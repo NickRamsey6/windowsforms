@@ -20,11 +20,13 @@ namespace Rot13Encoder
             StringBuilder result = new StringBuilder();
             // Set regex pattern to only A-Z letters, upper or lowercase
             Regex regex = new Regex("[A-Za-z]");
+            // Use char type so we can perform arithmetic and bitwise operations
             foreach (char c in input)
             {
                 // If the character in the input text matches the regex we will cypher it
                 if (regex.IsMatch(c.ToString()))
                 {
+                    // Use the address of operator (&) to shift the values of each charaacter
                     int code = ((c & 223) - 52) % 26 + (c & 32) + 65;
                     result.Append((char)code);
                 }
